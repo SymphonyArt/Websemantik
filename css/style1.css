@@ -1,0 +1,308 @@
+.Homepage {
+    width: 1440px;
+    height: 1024px;
+    position: relative;
+    background: #D8C09B;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.BgHomepage1 {
+    width: 1440px;
+    height: 1024px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+}
+
+.Tramus {
+    width: 559px;
+    height: 156px;
+    left: 211px;
+    top: 297px;
+    position: absolute;
+    color: #735C57;
+    font-size: 70px;
+    font-family: Goudy Stout;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+.Rectangle1 {
+    width: 822px;
+    height: 88px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #F9F4EC;
+    border-radius: 90px;
+}
+
+.Rectangle2 {
+    width: 182.67px;
+    height: 88px;
+    left: 639.33px;
+    top: 0px;
+    position: absolute;
+    background: #EA5050;
+    border-radius: 90px;
+}
+
+.IconlyRegularOutlineSearch {
+    width: 73.07px;
+    height: 71.11px;
+    padding-top: 5.93px;
+    padding-bottom: 3.79px;
+    padding-left: 6.09px;
+    padding-right: 5.29px;
+    left: 26.49px;
+    top: 7.11px;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+}
+
+.Search {
+    width: 61.69px;
+    height: 61.40px;
+    position: relative;
+}
+
+.Group3 {
+    width: 59.30px;
+    height: 57.71px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+}
+
+.Clip2 {
+    width: 59.30px;
+    height: 57.71px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: black;
+}
+
+.Fill1 {
+    width: 59.30px;
+    height: 57.71px;
+    left: -0px;
+    top: 0px;
+    position: absolute;
+}
+
+.Group6 {
+    width: 15.30px;
+    height: 14.86px;
+    left: 46.40px;
+    top: 46.54px;
+    position: absolute;
+}
+
+.Clip5 {
+    width: 15.30px;
+    height: 14.86px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: black;
+}
+
+.Fill4 {
+    width: 15.30px;
+    height: 14.86px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #D8C09B;
+}
+
+.Search {
+    width: 136.22px;
+    height: 25px;
+    left: 672.72px;
+    top: 19px;
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    font-family: Mulish;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.Rectangle3 {
+    width: 1440px;
+    height: 145px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #513728;
+}
+
+.Logo4crop1 {
+    width: 115px;
+    height: 115px;
+    left: 33px;
+    top: 16px;
+    position: absolute;
+}
+
+.DaftarLagu {
+    width: 252px;
+    height: 55px;
+    left: 743px;
+    top: 45px;
+    position: absolute;
+    color: white;
+    font-size: 34px;
+    font-family: Mulish;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.DaftarProvinsi {
+    width: 252px;
+    height: 55px;
+    left: 961px;
+    top: 45px;
+    position: absolute;
+    color: white;
+    font-size: 34px;
+    font-family: Mulish;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.Rectangle5 {
+    width: 130px;
+    height: 70px;
+    left: 1272px;
+    top: 37px;
+    position: absolute;
+    background: #EA5050;
+    border-radius: 90px;
+}
+
+.IconlyRegularOutlineSearch {
+    width: 50px;
+    height: 50px;
+    padding-top: 4.17px;
+    padding-bottom: 2.66px;
+    padding-left: 4.17px;
+    padding-right: 3.62px;
+    left: 1313px;
+    top: 45px;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+}
+
+.Search {
+    width: 42.22px;
+    height: 43.17px;
+    position: relative;
+}
+
+.Group3 {
+    width: 40.58px;
+    height: 40.58px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+}
+
+.Clip2 {
+    width: 40.58px;
+    height: 40.58px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: black;
+}
+
+.Fill1 {
+    width: 40.58px;
+    height: 40.58px;
+    left: -0px;
+    top: 0px;
+    position: absolute;
+}
+
+.Group6 {
+    width: 10.47px;
+    height: 10.45px;
+    left: 31.75px;
+    top: 32.72px;
+    position: absolute;
+}
+
+.Clip5 {
+    width: 10.47px;
+    height: 10.45px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: black;
+}
+
+.Fill4 {
+    width: 10.47px;
+    height: 10.45px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: white;
+}
+
+.TraditionalMusicIsAMust {
+    width: 391px;
+    height: 46px;
+    left: 245px;
+    top: 524px;
+    position: absolute;
+    color: rgba(119, 51, 85, 0.80);
+    font-size: 35px;
+    font-family: Schoolbell;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.Rectangle8 {
+    width: 1440px;
+    height: 70px;
+    left: 0px;
+    top: 954px;
+    position: absolute;
+    background: #513728;
+}
+@media (max-width: 767px) {
+    .Homepage {
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+    }
+
+    .BgHomepage1 {
+        width: 100%;
+        height: auto;
+    }
+
+    .Tramus, .Group11, .Group9, .Group12, .TraditionalMusicIsAMust, .Rectangle8 {
+        width: 100%;
+        position: relative;
+        text-align: center;
+        left: 0;
+        margin: 0;
+    }
+
+    .Rectangle1, .Rectangle2, .IconlyRegularOutlineSearch, .Rectangle3, .Rectangle5, .IconlyRegularOutlineSearch {
+        margin: 0 auto;
+    }
+
+    .Search {
+        margin: 0 auto;
+    }
+
+}
