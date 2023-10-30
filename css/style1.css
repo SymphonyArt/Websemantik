@@ -6,26 +6,16 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.BgHomepage1 {
-    width: 1440px;
-    height: 1024px;
-    left: 0px;
-    top: 0px;
-    position: absolute;
+#provinsiDropdown {
+    padding: 4px;
+    border: none;
+    background-color: #513728;
+    color: white;
+    font-size: 32px;
+    font-family: Mulish;
 }
 
-.Tramus {
-    width: 559px;
-    height: 156px;
-    left: 211px;
-    top: 297px;
-    position: absolute;
-    color: #735C57;
-    font-size: 70px;
-    font-family: Goudy Stout;
-    font-weight: 400;
-    word-wrap: break-word;
-}
+
 .Rectangle1 {
     width: 822px;
     height: 88px;
@@ -42,7 +32,7 @@
     left: 639.33px;
     top: 0px;
     position: absolute;
-    background: #EA5050;
+    background: #BCE5F9;
     border-radius: 90px;
 }
 
@@ -90,6 +80,7 @@
     left: -0px;
     top: 0px;
     position: absolute;
+    color: black;
 }
 
 .Group6 {
@@ -109,14 +100,7 @@
     background: black;
 }
 
-.Fill4 {
-    width: 15.30px;
-    height: 14.86px;
-    left: 0px;
-    top: 0px;
-    position: absolute;
-    background: #D8C09B;
-}
+
 
 .Search {
     width: 136.22px;
@@ -148,10 +132,10 @@
     position: absolute;
 }
 
-.DaftarLagu {
+.DaftarPahlawan {
     width: 252px;
     height: 55px;
-    left: 743px;
+    left: 670px;
     top: 45px;
     position: absolute;
     color: white;
@@ -176,28 +160,18 @@
 
 .Rectangle5 {
     width: 130px;
-    height: 70px;
+    height: 60px;
     left: 1272px;
     top: 37px;
     position: absolute;
-    background: #EA5050;
+    background: #BCE5F9;
     border-radius: 90px;
+    background-image: url("assets/prototype/Iconly/Regular/Outline/Search.svg");
+    color: #513728;
+         
 }
 
-.IconlyRegularOutlineSearch {
-    width: 50px;
-    height: 50px;
-    padding-top: 4.17px;
-    padding-bottom: 2.66px;
-    padding-left: 4.17px;
-    padding-right: 3.62px;
-    left: 1313px;
-    top: 45px;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    display: inline-flex;
-}
+
 
 .Search {
     width: 42.22px;
@@ -225,9 +199,10 @@
 .Fill1 {
     width: 40.58px;
     height: 40.58px;
-    left: -0px;
-    top: 0px;
+    left: 45px;
+    top: 7px;
     position: absolute;
+    color: #513728;
 }
 
 .Group6 {
@@ -256,18 +231,7 @@
     background: white;
 }
 
-.TraditionalMusicIsAMust {
-    width: 391px;
-    height: 46px;
-    left: 245px;
-    top: 524px;
-    position: absolute;
-    color: rgba(119, 51, 85, 0.80);
-    font-size: 35px;
-    font-family: Schoolbell;
-    font-weight: 400;
-    word-wrap: break-word;
-}
+
 
 .Rectangle8 {
     width: 1440px;
@@ -289,12 +253,13 @@
         height: auto;
     }
 
-    .Tramus, .Group11, .Group9, .Group12, .TraditionalMusicIsAMust, .Rectangle8 {
+    .Merdeka, .Group11, .Group9, .Group12, .TraditionalMusicIsAMust, .Rectangle8 {
         width: 100%;
         position: relative;
         text-align: center;
         left: 0;
         margin: 0;
+
     }
 
     .Rectangle1, .Rectangle2, .IconlyRegularOutlineSearch, .Rectangle3, .Rectangle5, .IconlyRegularOutlineSearch {
