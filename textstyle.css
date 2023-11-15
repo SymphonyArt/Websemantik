@@ -1,0 +1,182 @@
+body{
+    background-image : url("bgopung.png");
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+td{
+    border-radius:8px 12px 8px 12px;
+    overflow:hidden;
+    padding:8px 12px 8px 12px;
+    
+  }
+  .category {
+    background-color: #233140;
+    padding: 10px;
+    border-radius: 90px;
+    text-align: center;
+    display: block;
+    margin: 50px ;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:larger;
+    color: white;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 3)
+  }
+.bg-nav{
+    background-color: #513728;
+}
+.bg-text{
+    color:white;
+
+}  
+.btn-blue{
+  background-color:#BCE5F9;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.btn-blue:hover{
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+}
+  .box{
+      margin : 50px;
+      height:50px;
+      display:flex;
+      padding:10px 0px 10px 20px;
+      cursor:pointer;
+      background:#F9F4EC;
+      border-radius:90px;
+      align-items:center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 3)
+  }
+  
+  .box input{
+      width:100%;
+      outline:none;
+      border: none;
+      font-weight: 500;
+      background: transparent;
+  }
+  .box button{
+      background-color: #BCE5F9;
+      margin:0;
+      padding:10px 30px;
+      border-radius:90px;
+      border:none;
+      font-weight:500;
+      outline:none;
+      letter-spacing:1px;
+      cursor:pointer;
+      
+  }
+  .custom-table{
+    border-collapse: separate;
+    border-spacing:10px;
+    padding:8px 12px 8px 12px;
+  }
+  .custom-bg-container{
+    background-color:
+    #53748F;
+    border-radius:10px;
+  }
+  .custom-font{
+    font-size:30px;
+  }
+  .container{
+    width:50%;
+  }
+  .homepagetext{
+background-color: #233140;
+color:white;
+text-align: center;
+align-items:center;
+padding:50px 0px 20px 0px;
+margin:50px auto 0 auto;
+width:40%;
+border-radius:90px 90px 0px 0px;
+font-family: 'Goudy Bookletter 1911', serif;
+font-size :70px;
+min-width:min-content;
+justify-content: center;
+  }
+  .homepagetextsecond {
+    text-align: center;
+    align-items:center;
+    background-color: #233140;
+ color:white;
+ font-weight:500;
+ padding:35px 50px 20px 10px;
+ width:80%;
+ min-width: 1.5em;
+ margin: 0 auto 20px auto;
+ font-family: 'Schoolbell', cursive;
+ border-radius:90px;
+ word-wrap:break-word;
+  }
+  
+
+  
+  .kontener {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    justify-content:space-around;
+    background-color:white;
+  }
+  
+  .pahlawan-details {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .pahlawan-image {
+    margin-right: 20px;
+  }
+  
+  .pahlawan-image img {
+    width: 300px;
+    height: auto;
+    margin-right: 100px;
+    display:flex;
+  }
+  
+  .pahlawan-info {
+    max-width: 400px;
+  }
+  
+  .txtable {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    border-radius:8px 12px 8px 12px;
+  }
+  
+  .txtable, .txth, .txtd {
+    border: 1px solid #ccc;
+    border-radius:8px 12px 8px 12px;
+    padding: 10px;
+  }
+  
+  .additional-info {
+    margin-top: 50px;
+  }
+  
+  .youtube-video,
+  .google-maps {
+    margin-bottom: 30px;
+  }
+  
+  .youtube-video iframe,
+  .google-maps iframe {
+    width: 100%;
+    height: 300px;
+  }
+  

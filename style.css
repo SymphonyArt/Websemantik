@@ -1,57 +1,171 @@
 body{
-  background-image:url("assets/bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: red;
+    background-image:url("bgopung.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+/* Home */
+.category{
+    background-color: #233140;
+    padding: 10px;
+    border-radius: 30px;
+    text-align: center;
+    display: block;
+    margin-top: 50px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Goudy Stout';
+    font-size:larger;
+    color: white; 
 }
 
-.category {
-  background-color: #233140;
-  padding: 10px;
-  border-radius: 30px 0;
-  text-align: center;
-  display: block;
-  margin-top: 50px;
-  margin-bottom: 30px;
-  max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size:larger;
-  color: white;
+/* Tabel Pahlawan Nasional dan Pahlawan Daerah */
+  .category1 {
+    background-color: #233140;
+    padding: 10px;
+    border-radius: 30px 0;
+    text-align: center;
+    display: block;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:larger;
+    color: white;
+  }
+  
+  .category2{
+    background-color: #53748F;
+    padding: 30px;
+    border-radius: 30px;
+    width: 70%;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:larger;
+    color: white;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .list-group{
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+    background-color: #53748F;
+  }
+  
+  .list-group .list-group-item{
+    font-size: 18px;
+    background-color: #D1D1D1;
+    border-radius: 10px;
+    display: block;
+    margin: 3px;
+  }
+
+/* Search Ada */
+.box{
+    margin-left : 200px;
+    margin-right: 200px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    height:50px;
+    display:flex;
+    padding:10px 0px 10px 20px;
+    cursor:pointer;
+    background:#F9F4EC;
+    border-radius:90px;
+    align-items:center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 3)
 }
 
-.category2{
-  background-color: #53748F;
-  padding: 30px;
-  border-radius: 30px;
-  width: 70%;
-  text-align: center;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size:larger;
-  color: white;
+.box input{
+    width:100%;
+    outline:none;
+    border: none;
+    font-weight: 500;
+    background: transparent;
+}
+.box button{
+    background-color: #BCE5F9;
+    margin:0;
+    padding:10px 30px;
+    border-radius:90px;
+    border:none;
+    font-weight:500;
+    outline:none;
+    letter-spacing:1px;
+    cursor:pointer;
+    
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Detail */
+.row {
+    margin-bottom: 20px;
 }
 
-.list-group{
-  border-radius: 10px;
-  width: 100%;
-  text-align: center;
-  background-color: #53748F;
+.img-fluid {
+    width: 100%;
+    height: auto;
 }
 
-.list-group .list-group-item{
-  font-size: 18px;
-  background-color: #D1D1D1;
-  border-radius: 10px;
-  display: block;
-  margin: 3px;
+.table {
+    margin-left: 20px;
+}
+
+.embed-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+
+.embed-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 768px) {
+    .row-details {
+      display: flex;
+    }
+
+    .img-fluid {
+      width: 50%;
+    }
+
+    .table {
+      margin-left: 0;
+      width: 50%;
+    }
+
+    .embed-container {
+      width: 50%;
+    }
+    
+    .embed-container {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    }
+
+    .embed-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    }
 }
