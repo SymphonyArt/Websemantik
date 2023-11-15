@@ -18,7 +18,7 @@
     \EasyRdf\RdfNamespace::set('owl', 'http://www.w3.org/2002/07/owl#');
     \EasyRdf\RdfNamespace::set('pahlawan', 'http://www.tubeswebsemantik/pahlawan#');
 
-    $sparqlEndpoint = 'http://localhost:3030/tubes/query';
+    $sparqlEndpoint = 'http://localhost:3030/fix/query';
 
     $sparql = new \EasyRdf\Sparql\Client($sparqlEndpoint);
 
@@ -33,11 +33,15 @@
 
     // Sesuaikan query dengan LIMIT dan OFFSET
     $query = "
-        SELECT ?subject (SAMPLE(?label) AS ?uniqueLabel)
+        SELECT ?subject ?idLabel
         WHERE {
             ?subject rdfs:label ?label
+            OPTIONAL {
+                ?individual rdfs:label ?idLabel.
+                FILTER (LANG(?idLabel) = 'id')
+              }
         }
-        GROUP BY ?subject 
+        GROUP BY ?subject ?idLabel
         LIMIT $itemsPerPage OFFSET $offset";
 
     $results = $sparql->query($query);
@@ -48,6 +52,10 @@ $totalItemsQuery = "
 SELECT (COUNT(?subject) AS ?totalItems)
 WHERE {
     ?subject rdfs:label ?label
+    OPTIONAL {
+        ?individual rdfs:label ?idLabel.
+        FILTER (LANG(?idLabel) = 'id')
+      }
 }";
 $totalItemsResult = $sparql->query($totalItemsQuery);
 $totalItemsLiteral = $totalItemsResult[0]->totalItems;
@@ -73,7 +81,7 @@ $totalPages = ceil($totalItems / $itemsPerPage);
                         <?php foreach ($results as $result) : ?>
                             <tr>
                                 <td class="text-center">
-                                    <?php echo $result->uniqueLabel; ?></td>
+                                    <?php echo $result->idLabel; ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

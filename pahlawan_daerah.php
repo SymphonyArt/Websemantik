@@ -17,7 +17,7 @@
     \EasyRdf\RdfNamespace::set('owl', 'http://www.w3.org/2002/07/owl#');
     \EasyRdf\RdfNamespace::set('pahlawan', 'http://www.tubeswebsemantik/pahlawan#');
 
-    $sparqlEndpoint = 'http://localhost:3030/tubes/query';
+    $sparqlEndpoint = 'http://localhost:3030/fix/query';
 
     $daerah = $_GET['daerah'];
 
@@ -28,12 +28,16 @@
         // Menentukan query berdasarkan variabel region
     
                 $query = "
-                    SELECT ?individual (SAMPLE(?label) as ?sampleLabel)
+                    SELECT ?individual ?idLabel
                     WHERE {
                         ?individual pahlawan:Asal pahlawan:$daerah .
                         ?individual rdfs:label ?label .
+                        OPTIONAL {
+                            ?individual rdfs:label ?idLabel.
+                            FILTER (LANG(?idLabel) = 'id')
+                          }
                     }
-                    GROUP BY ?individual";
+                    GROUP BY ?individual ?idLabel";
         
 
         $results = $sparql->query($query);
@@ -55,7 +59,7 @@
                         <?php
                         foreach ($results as $result) {
                             echo '<tr>';
-                            echo '<td class="text-center">' . $result->sampleLabel . '</td>';
+                            echo '<td class="text-center">' . $result->idLabel . '</td>';
                             echo '</tr>';
                         }
                         ?>

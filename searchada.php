@@ -8,7 +8,7 @@ use EasyRdf\Sparql\Client;
 \EasyRdf\RdfNamespace::set('owl', 'http://www.w3.org/2002/07/owl#');
 \EasyRdf\RdfNamespace::set('pahlawan', 'http://www.tubeswebsemantik/pahlawan#');
 
-$sparqlEndpoint = 'http://localhost:3030/tubes/query';
+$sparqlEndpoint = 'http://localhost:3030/fix/query';
 $sparql = new Client($sparqlEndpoint);
 
 if (isset($_POST['submitSearch'])) {
@@ -16,23 +16,31 @@ if (isset($_POST['submitSearch'])) {
 
     if (strpos($searchTerm, '_') !== false) {
         $query = "
-        SELECT ?individual (SAMPLE(?label) as ?sampleLabel)
+        SELECT ?individual ?idLabel
         WHERE {
-            ?individual rdf:type pahlawan:$searchTerm.
-            ?individual rdfs:label ?label.
-        }
-        GROUP BY ?individual
+          ?individual rdf:type pahlawan:$searchTerm .
+          ?individual rdfs:label ?label .
+          
+          OPTIONAL {
+            ?individual rdfs:label ?idLabel.
+            FILTER (LANG(?idLabel) = 'id')
+          }
+        } 
+        GROUP BY ?individual ?idLabel
         ";
     } else {
         $query = "
-        SELECT ?individual (SAMPLE(?label) as ?sampleLabel)
+        SELECT ?individual ?idLabel  
         WHERE {
-            ?individual rdfs:label ?label.
-            FILTER (
-                CONTAINS(UCASE(?label), UCASE('$searchTerm'))
-            )
+          ?individual rdfs:label ?label .
+          FILTER (CONTAINS(UCASE(?label), UCASE('$searchTerm'))).   
+        
+          OPTIONAL {
+            ?individual rdfs:label ?idLabel . 
+            FILTER(lang(?idLabel) = 'id').
+          }
         }
-        GROUP BY ?individual
+        GROUP BY ?individual ?idLabel
         ";
     }
     $results = $sparql->query($query);}
@@ -115,8 +123,8 @@ if (isset($_POST['submitSearch'])) {
                 <?php
 foreach ($results as $result) {
     echo '<tr>';
-    if (property_exists($result, 'sampleLabel')) {
-        echo '<td class="text-center">' . $result->sampleLabel . '</td>';
+    if (property_exists($result, 'idLabel')) {
+        echo '<td class="text-center">' . $result->idLabel . '</td>';
     } else {
         echo '<script>';
     echo 'alert("Data not found!");';  
