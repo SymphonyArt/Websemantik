@@ -7,29 +7,36 @@ use EasyRdf\Sparql\Client;
 \EasyRdf\RdfNamespace::set('rdfs', 'http://www.w3.org/2000/01/rdf-schema#');
 \EasyRdf\RdfNamespace::set('owl', 'http://www.w3.org/2002/07/owl#');
 \EasyRdf\RdfNamespace::set('pahlawan', 'http://www.tubeswebsemantik/pahlawan#');
-
-$sparqlEndpoint = 'http://localhost:3030/fix/query';
+\EasyRdf\RdfNamespace::set('dbc', 'http://dbpedia.org/resource/Category:');
+\EasyRdf\RdfNamespace::set('dbo', 'http://dbpedia.org/ontology/');
+\EasyRdf\RdfNamespace::set('dbpedia', 'http://dbpedia.org/property/');
+\EasyRdf\RdfNamespace::set('dbr', 'http://dbpedia.org/resource/');
+\EasyRdf\RdfNamespace::set('gold', 'http://purl.org/linguistics/gold/');
+\EasyRdf\RdfNamespace::set('dbp', 'http://dbpedia.org/property/');
+\EasyRdf\RdfNamespace::set('foaf', 'http://xmlns.com/foaf/0.1/');
+\EasyRdf\RdfNamespace::set('geo', 'http://www.w3.org/2003/01/geo/wgs84_pos#');
+\EasyRdf\RdfNamespace::set('dbt', 'http://dbpedia.org/resource/Template:');
+$sparqlDBp = new \EasyRdf\Sparql\Client('http://dbpedia.org/sparql');
+$sparqlEndpoint = 'http://localhost:3030/pahlawan/query';
 $sparql = new Client($sparqlEndpoint);
-
-if (isset($_POST['submitSearch'])) {
     $searchTerm = $_POST['searchTerm'];
-
+    
     if (strpos($searchTerm, '_') !== false) {
         $query = "
         SELECT ?individual ?idLabel
         WHERE {
           ?individual rdf:type pahlawan:$searchTerm .
           ?individual rdfs:label ?label .
-          
           OPTIONAL {
             ?individual rdfs:label ?idLabel.
             FILTER (LANG(?idLabel) = 'id')
           }
         } 
-        GROUP BY ?individual ?idLabel
-        ";
+        GROUP BY ?individual ?idLabel";
+      
     } else {
-        $query = "
+      
+        $query = "     
         SELECT ?individual ?idLabel  
         WHERE {
           ?individual rdfs:label ?label .
@@ -41,77 +48,54 @@ if (isset($_POST['submitSearch'])) {
           }
         }
         GROUP BY ?individual ?idLabel
-        ";
+      ";
+      
     }
-    $results = $sparql->query($query);}
+    
+    $results = $sparql->query($query);
+    
+    // Check if $results is empty before executing $queryDBp
+    if (count($results) == 0) {
+        $queryDBp = "
+        SELECT DISTINCT ?label 
+        WHERE {
+          {
+            SELECT DISTINCT ?subject ?label 
+            WHERE {
+              ?subject foaf:name ?label .
+              FILTER (LANGMATCHES(LANG(?label), 'en'))
+            }
+          }
+          UNION 
+          {
+            SELECT DISTINCT ?subject ?label
+            WHERE {
+              ?subject dbp:name ?label . 
+              FILTER (LANGMATCHES(LANG(?label), 'en'))
+            }
+          } 
+          UNION
+          {
+            SELECT DISTINCT ?subject ?label
+            WHERE {
+              ?subject rdfs:label ?label .
+              FILTER (LANGMATCHES(LANG(?label), 'en')) 
+            }
+          }
+          
+          FILTER regex(?label, '$searchTerm', 'i')
+          ?subject dbp:wikiPageUsesTemplate dbt:National_Heroes_of_Indonesia. 
+        }";
+    
+        $resultDBp = $sparqlDBp->query($queryDBp);
+    }
+      
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search ada</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/27ec7e7fc6.js" crossorigin="anonymous"></script>
-    <style>
-        body {
-            background-image: url("bgopung.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        td {
-            border-radius: 8px 12px 8px 12px;
-            overflow: hidden;
-            padding: 8px 12px 8px 12px;
-        }
-
-        .box {
-            margin: 50px;
-            height: 50px;
-            display: flex;
-            padding: 10px 0px 10px 20px;
-            cursor: pointer;
-            background: #F9F4EC;
-            border-radius: 90px;
-            align-items: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 3)
-        }
-
-        .box input {
-            width: 100%;
-            outline: none;
-            border: none;
-            font-weight: 500;
-            background: transparent;
-        }
-
-        .box button {
-            background-color: #BCE5F9;
-            margin: 0;
-            padding: 10px 30px;
-            border-radius: 90px;
-            border: none;
-            font-weight: 500;
-            outline: none;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
-
-        .custom-table {
-            border-collapse: separate;
-            border-spacing: 10px;
-            padding: 8px 12px 8px 12px;
-        }
-
-        .custom-bg-container {
-            background-color: #53748F;
-            border-radius: 10px;
-        }
-    </style>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <?php include("nav.php") ?>
@@ -121,24 +105,67 @@ if (isset($_POST['submitSearch'])) {
             <table class="table mx-auto custom-table">
                 <tbody>
                 <?php
-foreach ($results as $result) {
-    echo '<tr>';
-    if (property_exists($result, 'idLabel')) {
-        echo '<td class="text-center">' . $result->idLabel . '</td>';
-    } else {
-        echo '<script>';
-    echo 'alert("Data not found!");';  
-    echo 'window.location.href = "index.php";';
-    echo '</script>';
-    }
-    echo '</tr>';
-}
-?>
+  
+         
+  $labels = array(); // Initialize an empty array to store labels
+                
+  // Process results from the first SPARQL query ($results)
+  if (!empty($results)) {
+      foreach ($results as $r) {
+          if (isset($r->idLabel)) {
+              // Pastikan $label bertipe string
+              $label = (string)$r->idLabel;
+              if (!empty($label)) {
+                  $labels[$label] = 'Local';
+              }
+          }
+      }
+  }
+  
+  // Process results from the second SPARQL query ($resultDBp)
+  if (!empty($resultDBp) ) {
+      foreach ($resultDBp as $r) {
+          $label = (string)$r->label;
+          if (!empty($label)) {
+          
+              if (!isset($labels[$label])) {
+                  $labels[$label] = 'DBpedia';
+              }
+          }
+      }
+  }
+
+  if (empty($labels)) {
+      echo '<script>';
+      echo 'Swal.fire({';
+      echo '  title: "Gagal!",';
+      echo '  text: "Data yang kamu cari tidak ada.",';
+      echo '  icon: "error",';
+      echo '  confirmButtonText: "OK"';
+      echo '}).then(function() {';
+      echo '  window.location.href = "index.php";';
+      echo '});';
+      echo '</script>';
+  } else {
+      // Buat formulir di luar loop jika $labels tidak kosong
+      echo '<form id="regionForm" action="detail.php" method="get">';
+      foreach ($labels as $label => $source) {
+          echo '<tr>';
+          echo '<td class="text-center">';
+          echo '<a href="detail.php?orang=' . $label . '&source=' . $source . '" style="color: black; text-decoration: none;">';
+          echo $label . ' (' . $source . ')';
+          echo '</a>';
+          echo '</td>';
+          echo '</tr>';
+      }
+      echo '</form>';
+  } 
+         ?>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 </body>
+<?php require("footer.php"); ?>
 </html>
-

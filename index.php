@@ -20,10 +20,11 @@
         <form action="searchada.php" method="post" name="searchForm">
             <div class="box">
                 <i class="fas fa-search"></i>
-                <input type="text" name="searchTerm" placeholder="Nama/Jenis Pahlawan(example:Pahlawan_Budaya_Agama)">
+                <input type="text" name="searchTerm" placeholder="Nama/Jenis Pahlawan">
                 <button type="submit" name="submitSearch">Search</button>
             </div>
         </form>
     </div>
 </body>
+<?php require("footer.php"); ?>
 </html>

@@ -17,46 +17,46 @@
     \EasyRdf\RdfNamespace::set('rdfs', 'http://www.w3.org/2000/01/rdf-schema#');
     \EasyRdf\RdfNamespace::set('owl', 'http://www.w3.org/2002/07/owl#');
     \EasyRdf\RdfNamespace::set('pahlawan', 'http://www.tubeswebsemantik/pahlawan#');
-
-    $sparqlEndpoint = 'http://localhost:3030/fix/query';
-
+    \EasyRdf\RdfNamespace::set('dbc', 'http://dbpedia.org/resource/Category:');
+    \EasyRdf\RdfNamespace::set('dbo', 'http://dbpedia.org/ontology/');
+    \EasyRdf\RdfNamespace::set('dbpedia', 'http://dbpedia.org/property/');
+    \EasyRdf\RdfNamespace::set('dbr', 'http://dbpedia.org/resource/');
+    \EasyRdf\RdfNamespace::set('gold', 'http://purl.org/linguistics/gold/');
+    \EasyRdf\RdfNamespace::set('dbp', 'http://dbpedia.org/property/');
+    \EasyRdf\RdfNamespace::set('foaf', 'http://xmlns.com/foaf/0.1/');
+    \EasyRdf\RdfNamespace::set('geo', 'http://www.w3.org/2003/01/geo/wgs84_pos#');
+    \EasyRdf\RdfNamespace::set('dbt', 'http://dbpedia.org/resource/Template:');
+  
+    $sparqlEndpoint = 'https://dbpedia.org/sparql';
     $sparql = new \EasyRdf\Sparql\Client($sparqlEndpoint);
-
-    // Jumlah item per halaman
     $itemsPerPage = 30;
-    
-    // Halaman yang diminta, atau default ke halaman pertama
-    $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-    // Hitung offset untuk hasil query
-    $offset = ($currentPage - 1) * $itemsPerPage;
+// Halaman yang diminta, atau default ke halaman pertama
+$currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-    // Sesuaikan query dengan LIMIT dan OFFSET
-    $query = "
-        SELECT ?subject ?idLabel
-        WHERE {
-            ?subject rdfs:label ?label
-            OPTIONAL {
-                ?individual rdfs:label ?idLabel.
-                FILTER (LANG(?idLabel) = 'id')
-              }
-        }
-        GROUP BY ?subject ?idLabel
-        LIMIT $itemsPerPage OFFSET $offset";
+// Hitung offset untuk hasil query
+$offset = ($currentPage - 1) * $itemsPerPage;
+$query = "
+    SELECT ?subject ?label
+    WHERE {
+        ?subject dbp:wikiPageUsesTemplate dbt:National_Heroes_of_Indonesia.
+        ?subject dbp:name ?label.
+        FILTER(LANG(?label) = 'en') 
+    }
+    LIMIT $itemsPerPage OFFSET $offset
+";
 
-    $results = $sparql->query($query);
+$results = $sparql->query($query);
 
-    // Hitung total item dalam dataset
-    // Hitung total item dalam dataset
+// Total items query
 $totalItemsQuery = "
-SELECT (COUNT(?subject) AS ?totalItems)
-WHERE {
-    ?subject rdfs:label ?label
-    OPTIONAL {
-        ?individual rdfs:label ?idLabel.
-        FILTER (LANG(?idLabel) = 'id')
-      }
-}";
+    SELECT (COUNT(?subject) as ?totalItems)
+    WHERE {
+        ?subject dbp:wikiPageUsesTemplate dbt:National_Heroes_of_Indonesia.
+        ?subject dbp:name ?label.
+        FILTER(LANG(?label) = 'en') 
+    }
+";
 $totalItemsResult = $sparql->query($totalItemsQuery);
 $totalItemsLiteral = $totalItemsResult[0]->totalItems;
 
@@ -65,7 +65,6 @@ $totalItems = $totalItemsLiteral->getValue();
 
 // Hitung total halaman
 $totalPages = ceil($totalItems / $itemsPerPage);
-
     ?>
 
     <!-- end of nav -->
@@ -80,8 +79,7 @@ $totalPages = ceil($totalItems / $itemsPerPage);
                     <tbody>
                         <?php foreach ($results as $result) : ?>
                             <tr>
-                                <td class="text-center">
-                                    <?php echo $result->idLabel; ?></td>
+                                    <?php echo '<td class="text-center"><a href="detail.php?orang=' . $result->label . '" style="color: black; text-decoration: none;">' . $result->label . '</a></td>'; ?>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -112,4 +110,5 @@ for ($i = $startPage; $i <= $endPage; $i++) {
     </div>
 
 </body>
+<?php require("footer.php"); ?>
 </html>

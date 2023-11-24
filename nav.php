@@ -34,9 +34,9 @@
                 </a>
                 <form id="regionForm" action="pahlawan_daerah.php" method="get">
     <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="pahlawan_daerah.php?daerah=Timur_Indonesia" onclick="selectRegion('Timur_Indonesia', 'timur')">Timur Indonesia</a></li>
-        <li><a class="dropdown-item" href="pahlawan_daerah.php?daerah=Tengah_Indonesia" onclick="selectRegion('Tengah_Indonesia', 'tengah')">Tengah Indonesia</a></li>
-        <li><a class="dropdown-item" href="pahlawan_daerah.php?daerah=Barat_Indonesia" onclick="selectRegion('Barat_Indonesia', 'barat')">Barat Indonesia</a></li>
+        <li><a class="dropdown-item" href="pahlawan_daerah.php?daerah=Timur_Indonesia">Timur Indonesia</a></li>
+        <li><a class="dropdown-item" href="pahlawan_daerah.php?daerah=Tengah_Indonesia">Tengah Indonesia</a></li>
+        <li><a class="dropdown-item" href="pahlawan_daerah.php?daerah=Barat_Indonesia">Barat Indonesia</a></li>
     </ul>
 </form>
               </li>
@@ -45,7 +45,7 @@
             <form action="searchada.php" method="post" name="searchForm">
             <div class="box">
                 <i class="fas fa-search"></i>
-                <input type="text" name="searchTerm" placeholder="Nama/Jenis Pahlawan(example:Pahlawan_Budaya_Agama)">
+                <input type="text" name="searchTerm" placeholder="Nama/Jenis Pahlawan">
                 <button type="submit" name="submitSearch">Search</button>
             </div>
         </form>
@@ -54,12 +54,6 @@
       </nav>
 </body>    
 </html>
-<script>
-    // Fungsi untuk mengatur nilai input hidden saat salah satu opsi dipilih
-    function selectRegion(region, inputId) {
-        document.getElementById(inputId + '_input').value = region;
-        document.getElementById('regionForm').submit();
-    }
-</script>
+
 
 
