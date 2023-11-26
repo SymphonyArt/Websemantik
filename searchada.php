@@ -54,7 +54,6 @@ $sparql = new Client($sparqlEndpoint);
     
     $results = $sparql->query($query);
     
-    // Check if $results is empty before executing $queryDBp
     if (count($results) == 0) {
         $queryDBp = "
         SELECT DISTINCT ?label 

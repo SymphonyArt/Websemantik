@@ -103,11 +103,18 @@ if (!empty($resultDBp[0]->wiki)) {
         
       <h1><?php echo $nama; ?></h1>
 
-        <p>  <?php
-              
-                $abstract = !empty($resultDBp[0]->abstract) ? $resultDBp[0]->abstract : null;
-                echo !is_null($abstract) ? $abstract : $results[0]->deskripsi;
-                ?></p>
+      <p>
+  <?php
+    $abstract = !empty($resultDBp[0]->abstract) ? $resultDBp[0]->abstract : null;
+    $deskripsi = !empty($results[0]->deskripsi) ? $results[0]->deskripsi : null;
+
+    if (!is_null($abstract) || !is_null($deskripsi)) {
+      echo !is_null($abstract) ? $abstract : $deskripsi;
+    } else {
+      echo "Tidak ada deskripsi";
+    }
+  ?>
+</p>
         <div class="col-md-8">
             <table class="table table-striped txtable">
               <tbody>
@@ -220,7 +227,7 @@ L.marker([<?php echo $lat; ?>, <?php echo $long; ?>]).addTo(map)
 
 <script>
 
-var map = L.map('mapid').setView([0, 0], 13);
+var map = L.map('mapid').setView([0.7893, 113.9213], 13);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '© OpenStreetMap contributors' 
