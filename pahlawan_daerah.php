@@ -50,14 +50,15 @@ $item=$sparql->query($totalItems);
 
 <div class="container">
     <div class="category">
-        <span>Pahlawan Daerah</span>
+        <?php
+        echo'<span>Pahlawan Daerah '. $daerah.'</span>'?>
     </div>
     <div class="table-responsive">
         <div class="containerB mt-5 custom-bg-container">
             <table class="table mx-auto custom-table">
                 <thead>
                 <tr>
-                    <th class="text-center">Nama Pahlawan</th>
+                    <th class="text-center">Nama Pahlawan </th>
                 </tr>
                 </thead>
                 <tbody>

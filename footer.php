@@ -9,6 +9,9 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Make sure the body covers the full viewport height */
         }
 
         /* CSS untuk footer */
@@ -17,6 +20,7 @@
             color: white;
             text-align: center;
             padding: 40px;
+            margin-top: auto; /* Push the footer to the bottom of the page */
         }
 
         /* CSS untuk teks di dalam footer */
@@ -33,16 +37,16 @@
             color: white;
             text-decoration: none;
         }
-
     </style>
 </head>
 <body>
+
+    <!-- Your page content goes here -->
 
     <!-- copyright bottom -->
     <div class="copy-bottom bg-li py-4 border-top">
         <div class="container-fluid">
             <div class="d-md-flex px-md-3 position-relative text-center">
-                
                 <div class="copy_right mx-md-auto mb-md-0 mb-3">
                     <p class="text-bl let">© 2023 Merdeka. All rights reserved |
                         <a href="aboutus.html" >About Us</a>

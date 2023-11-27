@@ -95,6 +95,7 @@ $sparql = new Client($sparqlEndpoint);
 <html lang="en">
 <head>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<title>Pahlawan </title>
 </head>
 <body>
 <?php include("nav.php") ?>
